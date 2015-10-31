@@ -44,16 +44,13 @@ var killAlerts = true;
     document.getElementsByClassName('toggleAllUsers')[0].onclick = function () {
       allUsers = !allUsers;
       if (allUsers) {
-        usersInterval = setInterval(function () {
-          Users.getAll();
-        }, 2000);
+        Users.intervalGetMe();
       } else {
         clearInterval(usersInterval);
         var customers = _.where(actors, {type: 'customer'});
         customers.forEach(function (item) {
           map.removeLayer(item);
-        })
-        // TODO: add my location
+        });
       }
       toggleMenu();
     };

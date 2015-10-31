@@ -2,6 +2,7 @@ var Users;
 (function () {
   var me;
   var meId;
+  var getMeInterval;
 
   Users = function () {
 
@@ -16,6 +17,8 @@ var Users;
   };
 
   Users.getAll = function () {
+    clearInterval(getMeInterval);
+
     $.getJSON(server + "users", function (data) {
       data.forEach(function (item) {
         if (!item.updates.length) {
@@ -68,11 +71,14 @@ var Users;
     })
   };
 
+  Users.intervalGetMe = function () {
+    getMeInterval = setInterval(function () {
+      Users.getMe();
+    }, 10000);
+  };
+
 })();
 
-setInterval(function () {
-  Users.getMe();
-}, 2000);
-
+Users.intervalGetMe();
 // var user = new Users();
 // user.register();
