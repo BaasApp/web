@@ -73,6 +73,7 @@ var Users;
   };
 
   Users.intervalGetMe = function () {
+    Users.getMe();
     getMeInterval = setInterval(function () {
       Users.getMe();
     }, 10000);

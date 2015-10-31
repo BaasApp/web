@@ -44,13 +44,14 @@ var killAlerts = true;
     document.getElementsByClassName('toggleAllUsers')[0].onclick = function () {
       allUsers = !allUsers;
       if (allUsers) {
-        Users.intervalGetMe();
+        Users.getAll();
       } else {
         clearInterval(usersInterval);
         var customers = _.where(actors, {type: 'customer'});
         customers.forEach(function (item) {
           map.removeLayer(item);
         });
+        Users.intervalGetMe();
       }
       toggleMenu();
     };

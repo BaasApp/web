@@ -38,7 +38,7 @@ var createActor = function (latlong, params) {
 
 var beerCloseAlert = function() {
   if (killAlerts) return;
-  alert('the beer is appon thee, revel in its magnificance!');
+  alert('The beer is upon thee, revel in its magnificance!');
 };
 
 var throttledBeerCloseAlert = _.throttle(beerCloseAlert, 25000, {trailing: false});
