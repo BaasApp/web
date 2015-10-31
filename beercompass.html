@@ -2,13 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>BaaS - Beer as a Service!</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
     <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js" charset="utf-8"></script>
+    <script src="config.js" charset="utf-8"></script>
     <script src="leaflet-heat.js" charset="utf-8"></script>
     <script src="ui.js" charset="utf-8"></script>
     <script src="walkers.js" charset="utf-8"></script>
+    <script src="users.js" charset="utf-8"></script>
+    <script src="tenders.js" charset="utf-8"></script>
     <style media="screen">
       html, body {
         margin: 0;
@@ -29,6 +35,9 @@
         font-family: sans-serif;
         color: #FFF;
         /*color: #767;*/
+        background: url(logo.png) top left no-repeat;
+        background-size: contain;
+        text-indent: -9999px;
       }
       .menu {
         position: fixed;
@@ -39,6 +48,25 @@
         text-align: center;
         line-height: 5vh;
       }
+      .beerProgress {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 60vw;
+        right: 0;
+        text-align: right;
+        font-size: 20vh;
+        color: gray;
+        background-color: orange;
+      }
+      .progressBar {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: green;
+        z-index: -1;
+      }
     </style>
   </head>
   <body>
@@ -47,14 +75,20 @@
     <div class="menu" style="display: none">
       <button class='toggleHeat'>BaaS Data Services</button>
       <button class='wipeHeat'>Wipe</button>
+      <button class='toggleAlerts'>Toggle Alerts</button>
+      <button class='toggleAllUsers'>Toggle All Users</button>
+    </div>
+    <div class="beerProgress">
+      <div class="progressBar" style='top: 50%'></div>
+      <i class="fa fa-beer"></i>
     </div>
 
     <script>
       L.mapbox.accessToken = 'pk.eyJ1IjoianVpY2UxMCIsImEiOiJjaWdlNXFtb28zdzFldmJtOGRkNnFlMnY5In0.72hyCbe4AfMONitVc23VSg';
-      var map = L.mapbox.map('map', 'juice10.o1h6ah72');
+      var map = L.mapbox.map('map', 'juice10.o1h6ah72', {zoomControl: false}).setView([52.386818, 4.871052], 30);
       var beerHeat = L.heatLayer([]).addTo(map);
       var customerHeat = L.heatLayer([], {gradient: {0: 'purple', 0.5: 'lightpink', 1: 'white'}}).addTo(map);
-      map.on('move', function () { console.log('hi', arguments, this); });
+      // map.on('move', function () { console.log('hi', arguments, this); });
 
       walk(
         [[52.387418, 4.871452], [52.387458, 4.871472], [52.387518, 4.871472], [52.387558, 4.871472], [52.387560, 4.871402]],
@@ -88,6 +122,8 @@
 
       var sequence = [[52.386818, 4.871052], [52.386828, 4.871102]];
       walk(sequence, map, {marker: 'customer', isLoop: true});
+
+      createActor([52.386642, 4.871077], {marker: 'stage'}).addTo(map);
     </script>
   </body>
 </html>

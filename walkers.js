@@ -11,16 +11,22 @@ var createActor = function (latlong, params) {
       warm: "#f5c272"
     }
     var tempColor = tempColors[params.temp || "medium"];
-    var icon =  L.mapbox.marker.icon({
+    icon =  L.mapbox.marker.icon({
       "marker-color": tempColor,
       "marker-size": "small",
       "marker-symbol": "beer",
     });
   } else if (type == 'customer') {
-    var icon =  L.mapbox.marker.icon({
+    icon =  L.mapbox.marker.icon({
       "marker-color": "#1087bf",
       "marker-size": "large",
       "marker-symbol": "heart",
+    });
+  } else if (type == 'stage') {
+    icon =  L.mapbox.marker.icon({
+      "marker-color": "#f86767",
+      "marker-size": "medium",
+      "marker-symbol": "star-stroked"
     });
   }
 
@@ -31,10 +37,11 @@ var createActor = function (latlong, params) {
 };
 
 var beerCloseAlert = function() {
+  if (killAlerts) return;
   alert('the beer is appon thee, revel in its magnificance!');
 };
 
-var throttledBeerCloseAlert = _.throttle(beerCloseAlert, 15000, {trailing: false});
+var throttledBeerCloseAlert = _.throttle(beerCloseAlert, 25000, {trailing: false});
 
 var move = function (marker, latlong) {
   marker.setLatLng(latlong);
@@ -43,12 +50,9 @@ var move = function (marker, latlong) {
   }
 
   actors.forEach(function (actor, i) {
-    if (actor.getLatLng().equals(marker.getLatLng())) {
-      return;
-    }
-    if (marker.type === actor.type) {
-      return;
-    }
+    if (marker.type === 'stage' || actor.type === 'stage') return;
+    if (marker.type === actor.type) return;
+
     var distance = actor.getLatLng().distanceTo(marker.getLatLng());
     if (distance < 5) {
       setTimeout(throttledBeerCloseAlert, 300);
