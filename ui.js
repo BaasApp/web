@@ -17,4 +17,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     trackMovement = !trackMovement;
     toggleMenu();
   };
+
+  document.getElementsByClassName('wipeHeat')[0].onclick = function () {
+    trackMovement = false;
+    customerHeat.setLatLngs([]);
+    beerHeat.setLatLngs([]);
+    toggleMenu();
+  };
 });

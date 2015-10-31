@@ -30,22 +30,30 @@ var createActor = function (latlong, params) {
   return marker;
 };
 
+var beerCloseAlert = function() {
+  alert('the beer is appon thee, revel in its magnificance!');
+};
+
+var throttledBeerCloseAlert = _.throttle(beerCloseAlert, 15000, {trailing: false});
+
 var move = function (marker, latlong) {
   marker.setLatLng(latlong);
   if (trackMovement) {
     (marker.type == 'beerTender' ? beerHeat : customerHeat).addLatLng(latlong);
   }
-  // customerHeat.addLatLng(latlong);
 
-  // actors.forEach(function (actor, i) {
-  //   if (actor.getLatLng().equals(marker.getLatLng())) {
-  //     return;
-  //   }
-  //   var distance = actor.getLatLng().distance(marker.getLatLng());
-  //   if (distance < 40) {
-  //     console.log('close!!!')
-  //   }
-  // });
+  actors.forEach(function (actor, i) {
+    if (actor.getLatLng().equals(marker.getLatLng())) {
+      return;
+    }
+    if (marker.type === actor.type) {
+      return;
+    }
+    var distance = actor.getLatLng().distanceTo(marker.getLatLng());
+    if (distance < 5) {
+      setTimeout(throttledBeerCloseAlert, 300);
+    }
+  });
 };
 
 var walk = function (coords, map, params) {
@@ -62,7 +70,7 @@ var walk = function (coords, map, params) {
 
   var latlong = sequence.pop();
   var marker = createActor([latlong[0] + modifier[0], latlong[1] + modifier[1]], params).addTo(map);
-  marker.on('move', function () { console.log('hi', arguments, this); });
+  // marker.on('move', function () { console.log('hi', arguments, this); });
 
   var interval = setInterval(function () {
     latlong = sequence.pop();
