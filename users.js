@@ -49,6 +49,7 @@ var Users;
     meId = docCookies.getItem('meId');
     if (!me) {
       var callback = function () {
+        meId = docCookies.getItem('meId');
         me = createActor(latlng, {marker: 'customer'}).addTo(map);
         me.id = meId;
       };
