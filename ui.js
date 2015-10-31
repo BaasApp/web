@@ -36,7 +36,9 @@ var killAlerts = true;
       } else {
         clearInterval(usersInterval);
         var customers = _.where(actors, {type: 'customer'});
-        // actors
+        customers.forEach(function (item) {
+          map.removeLayer(item);
+        })
         // TODO: add my location
       }
       toggleMenu();

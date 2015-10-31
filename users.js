@@ -27,9 +27,41 @@ var Users;
       })
     });
   };
+
+  var getLocation = function (callback) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(callback);
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+  };
+
+  var me;
+  var createOrUpdateMe = function (latlng) {
+    if (!me) {
+      // TODO: enable the follwing
+      // var user = new Users();
+      // user.register();
+
+      me = createActor(latlng, {marker: 'customer'}).addTo(map);
+    } else {
+      // TODO: post my loc to the server
+      move(me, latlng);
+    }
+  };
+
+  Users.getMe = function () {
+    getLocation(function (geo) {
+      latlng = [geo.coords.latitude, geo.coords.longitude];
+      createOrUpdateMe(latlng);
+    })
+  };
+
 })();
 
-
+setInterval(function () {
+  Users.getMe();
+}, 2000);
 
 // var user = new Users();
 // user.register();
