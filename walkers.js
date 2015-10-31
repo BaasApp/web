@@ -2,9 +2,9 @@ var actors = [];
 
 var createActor = function (latlong, params) {
   if (!params) params = {};
-  var marker = params.marker || 'beerTender';
+  var type = params.marker || 'beerTender';
   var icon;
-  if (marker == 'beerTender') {
+  if (type == 'beerTender') {
     var tempColors = {
       cold: "#a3e46b",
       medium: "#f1f075",
@@ -16,7 +16,7 @@ var createActor = function (latlong, params) {
       "marker-size": "small",
       "marker-symbol": "beer",
     });
-  } else if (marker == 'customer') {
+  } else if (type == 'customer') {
     var icon =  L.mapbox.marker.icon({
       "marker-color": "#1087bf",
       "marker-size": "large",
@@ -25,19 +25,27 @@ var createActor = function (latlong, params) {
   }
 
   var marker = L.marker(latlong, {icon: icon});
+  marker.type = type;
   actors.push(marker);
   return marker;
 };
 
 var move = function (marker, latlong) {
   marker.setLatLng(latlong);
+  if (trackMovement) {
+    (marker.type == 'beerTender' ? beerHeat : customerHeat).addLatLng(latlong);
+  }
+  // customerHeat.addLatLng(latlong);
 
-  actors.forEach(function (actor, i) {
-    if (actor.getLatLng().equals(marker.getLatLng())) {
-      
-    }
-    var distance = actor.getLatLng().distance(marker.getLatLng());
-  });
+  // actors.forEach(function (actor, i) {
+  //   if (actor.getLatLng().equals(marker.getLatLng())) {
+  //     return;
+  //   }
+  //   var distance = actor.getLatLng().distance(marker.getLatLng());
+  //   if (distance < 40) {
+  //     console.log('close!!!')
+  //   }
+  // });
 };
 
 var walk = function (coords, map, params) {
