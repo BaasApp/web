@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cat > /usr/share/nginx/html/config.js <<EOF
+var server = "${API_URL}";
+var admin = ${IS_ADMIN};
+EOF
+
+nginx -g "daemon off;"
