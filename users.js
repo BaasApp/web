@@ -1,21 +1,27 @@
 var Users;
 (function () {
+  var me;
+  var meId;
 
   Users = function () {
 
   };
 
-  Users.prototype.register = function () {
+  Users.prototype.register = function (callback) {
     $.post(server + "users", {name: 'frankygoboom', push_register_id: ''}, function () {
-      console.log(arguments);
       // set the following in an id: arguments[0].id;
+      docCookies.setItem('meId', arguments[0].id);
+      callback();
     });
   };
 
   Users.getAll = function () {
     $.getJSON(server + "users", function (data) {
       data.forEach(function (item) {
-        var latlng = [item.last_update.latitude, item.last_update.longitude]
+        if (!item.updates.length) {
+          return;
+        }
+        var latlng = [item.updates[0].latitude, item.updates[0].longitude]
         var actor = _.findWhere(actors, {id: item.id, type: 'customer'});
         if (actor) {
           move(actor, latlng);
@@ -36,16 +42,21 @@ var Users;
     }
   };
 
-  var me;
   var createOrUpdateMe = function (latlng) {
+    meId = docCookies.getItem('meId');
     if (!me) {
-      // TODO: enable the follwing
-      // var user = new Users();
-      // user.register();
-
-      me = createActor(latlng, {marker: 'customer'}).addTo(map);
+      var callback = function () {
+        me = createActor(latlng, {marker: 'customer'}).addTo(map);
+        me.id = meId;
+      };
+      if (!meId) {
+        var user = new Users();
+        user.register(callback);
+      } else {
+        callback();
+      }
     } else {
-      // TODO: post my loc to the server
+      $.post(server + "users/" + me.id + "/update", {latitude: latlng[0], longitude: latlng[1]});
       move(me, latlng);
     }
   };

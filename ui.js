@@ -26,6 +26,20 @@ var killAlerts = true;
       toggleMenu();
     };
 
+    document.getElementsByClassName('goToMe')[0].onclick = function () {
+      navigator.geolocation.getCurrentPosition(function (geo) {
+        var latlng = [geo.coords.latitude, geo.coords.longitude];
+        map.panTo(latlng, {zoom: 25});
+      });
+
+      toggleMenu();
+    };
+
+    document.getElementsByClassName('goToPitch')[0].onclick = function () {
+      map.panTo([52.386818, 4.871052], {zoom: 30});
+      toggleMenu();
+    };
+
     var usersInterval;
     document.getElementsByClassName('toggleAllUsers')[0].onclick = function () {
       allUsers = !allUsers;
