@@ -98,5 +98,9 @@ var killAlerts = true;
       $('.gauge').toggle();
       $('.gauge-placeholder').toggle();
     });
+
+    $('.show-wallet').on('click', function () {
+      $('.tokens').show();
+    });
   });
 })()
