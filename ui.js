@@ -90,8 +90,13 @@ var killAlerts = true;
       toggleMenu();
     };
 
-    $('.beer-bar').on('click', function () {
+    $('.gauge').on('click', function () {
       Gauge.addBeer();
+    });
+
+    $('.gauge-placeholder-toggle').on('click', function () {
+      $('.gauge').toggle();
+      $('.gauge-placeholder').toggle();
     });
   });
 })()

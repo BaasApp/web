@@ -61,6 +61,11 @@ body {
   vertical-align: bottom;
   margin-bottom: 2vh;
 }
+.gauge-placeholder {
+  background-image: url(gauge-placeholder.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .c3-gauge-value {
   /*font-size: 16px !important;*/
   background-color: rgba(255,255,255,0.5);

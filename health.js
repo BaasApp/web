@@ -8,7 +8,7 @@ $(function() {
     $('#health-login').removeClass('show');
   });
 
-  $('.healthLogin').on('click', function() {
+  $('.healthLogin, .gauge-placeholder').on('click', function() {
     $('#health-login').addClass('show');
   });
 
@@ -19,6 +19,9 @@ $(function() {
 
     $healthLoginForm.addClass('hide');
     $loader.removeClass('hide').addClass('show');
+
+    $('.gauge').css('visibility', 'visible');
+    $('.gauge-placeholder').toggle();
 
     Users.postHealth($('#health-email').val(), $('#health-password').val(), function() {
       $('#health-login').removeClass('show');
