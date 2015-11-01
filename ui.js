@@ -47,19 +47,19 @@ var killAlerts = true;
 
       setTimeout(function () {
         Gauge.update(4000, 1);
-      }, 2000);
+      }, 3000);
 
       setTimeout(function () {
         Gauge.update(300, 2);
-      }, 4000);
-
-      setTimeout(function () {
-        Gauge.update(80, 2);
       }, 6000);
 
       setTimeout(function () {
+        Gauge.update(80, 2);
+      }, 9000);
+
+      setTimeout(function () {
         Gauge.update(300, 8);
-      }, 8000);
+      }, 12000);
       toggleMenu();
     };
 
