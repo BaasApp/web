@@ -53,6 +53,11 @@ var Users;
         meId = docCookies.getItem('meId');
         me = createActor(latlng, {marker: 'customer'}).addTo(map);
         me.id = meId;
+        $.getJSON(server + "users/" + me.id, function (data) {
+          Gauge._beer = data.beer_count;
+          Gauge._calories = data.calories;
+          Gauge.update();
+        });
       };
       if (!meId) {
         var user = new Users();
