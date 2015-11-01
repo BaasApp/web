@@ -40,13 +40,38 @@ var killAlerts = true;
       toggleMenu();
     };
 
+    document.getElementsByClassName('testGauge')[0].onclick = function () {
+      setTimeout(function () {
+        Gauge.update(0, 1);
+      }, 500);
+
+      setTimeout(function () {
+        Gauge.update(4000, 1);
+      }, 2000);
+
+      setTimeout(function () {
+        Gauge.update(300, 2);
+      }, 4000);
+
+      setTimeout(function () {
+        Gauge.update(80, 2);
+      }, 6000);
+
+      setTimeout(function () {
+        Gauge.update(300, 8);
+      }, 8000);
+      toggleMenu();
+    };
+
     var usersInterval;
     document.getElementsByClassName('toggleAllUsers')[0].onclick = function () {
       allUsers = !allUsers;
       if (allUsers) {
         Users.getAll();
+        $('.bottom-bar').hide();
       } else {
         clearInterval(usersInterval);
+        $('.bottom-bar').show();
         var customers = _.where(actors, {type: 'customer'});
         customers.forEach(function (item) {
           map.removeLayer(item);

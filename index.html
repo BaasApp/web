@@ -8,6 +8,7 @@
     <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="c3.css" charset="utf-8">
+    <link rel="stylesheet" href="main.css" charset="utf-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
@@ -20,70 +21,6 @@
     <script src="users.js" charset="utf-8"></script>
     <script src="tenders.js" charset="utf-8"></script>
     <script src="gauge.js" charset="utf-8"></script>
-    <style media="screen">
-      html, body {
-        margin: 0;
-        padding: 0;
-      }
-      .branding {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        height: 20vh;
-        /*background-color: #FFF;*/
-        background-color: #0A7A06;
-        opacity: 0.8;
-        line-height: 20vh;
-        font-size: 10vh;
-        text-align: center;
-        font-family: sans-serif;
-        color: #FFF;
-        /*color: #767;*/
-        background: url(logo.png) top left no-repeat;
-        background-size: contain;
-        text-indent: -9999px;
-      }
-      .menu {
-        position: fixed;
-        top: 20vh;
-        right: 0;
-        left: 0;
-        height: 10vh;
-        text-align: center;
-        line-height: 5vh;
-      }
-      .bottom-bar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        text-align: right;
-        font-size: 20vh;
-        color: gray;
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&amp;1+0,0+100 */
-        background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* IE10+ */
-        background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
-        /*background-color: white;*/
-      }
-      .bottom-bar div {
-        display: inline-block;
-        width: 35vw;
-        height: 20vh;
-        margin-right: 5vw;
-        vertical-align: bottom;
-        margin-bottom: 2vh;
-      }
-      .c3-gauge-value {
-        /*font-size: 16px !important;*/
-        background-color: rgba(255,255,255,0.5);
-      }
-    </style>
   </head>
   <body>
     <div id="map" style="width: 100vw; height: 105vh; margin-bottom: -5vh;"></div>
@@ -95,6 +32,7 @@
       <button class='toggleAllUsers'>Toggle All Users</button>
       <button class='goToMe'>To Me!</button>
       <button class='goToPitch'>To Pitch!</button>
+      <button class='testGauge'>Test Gauge</button>
     </div>
     <div class="bottom-bar">
       <div class='beer-bar'></div>

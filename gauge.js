@@ -1,6 +1,6 @@
 var Gauge = function(){};
 Gauge._beer = 0;
-Gauge._cardio = 0;
+Gauge._calories = 0;
 setTimeout(function () {
   var chart = c3.generate({
     bindto: '.bottom-bar div',
@@ -80,22 +80,26 @@ setTimeout(function () {
 
   var caloriesPerBeer = 150;
   Gauge.addBeer = function () {
+    $.post(server + "users/" + docCookies.getItem('meId') + "/beer");
     Gauge._beer++;
     Gauge.update();
   };
 
   Gauge.updateCardio = function (number) {
-    Gauge._cardio = number;
+    Gauge._calories = number;
     Gauge.update();
   };
 
-  Gauge.update = function () {
-    var cardios = (this._cardio + (caloriesPerBeer * 2)) / caloriesPerBeer;
-    var ratio = (this._beer + 2 || 0.0001) / (cardios || 0.0001);
+  Gauge.update = function (calories, beers) {
+    calories = calories || this._calories;
+    beers = beers || this._beer;
+
+    var negativeBeers = (calories + (caloriesPerBeer * 2)) / caloriesPerBeer;
+    var ratio = (beers + 2 || 0.0001) / (negativeBeers || 0.0001);
 
     chart.load({
         columns: [['data', ratio * 50]]
     });
-  }
+  };
 
 }, 1500);

@@ -62,6 +62,11 @@ var Users;
       }
     } else {
       $.post(server + "users/" + me.id + "/update", {latitude: latlng[0], longitude: latlng[1]});
+      $.getJSON(server + "users/" + me.id, function (data) {
+        Gauge._beer = data.beer_count;
+        Gauge._calories = data.calories;
+        Gauge.update();
+      });
       move(me, latlng);
     }
   };
