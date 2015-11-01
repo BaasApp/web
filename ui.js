@@ -64,5 +64,9 @@ var killAlerts = true;
       beerHeat.setLatLngs([]);
       toggleMenu();
     };
+
+    $('.beer-bar').on('click', function () {
+      Gauge.addBeer();
+    });
   });
 })()

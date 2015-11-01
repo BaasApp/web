@@ -53,28 +53,35 @@
         text-align: center;
         line-height: 5vh;
       }
-      .beerProgress {
-        /*display: none;*/
+      .bottom-bar {
         position: fixed;
         bottom: 0;
-        left: 60vw;
+        left: 0;
         right: 0;
         text-align: right;
         font-size: 20vh;
         color: gray;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&amp;1+0,0+100 */
+        background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
         /*background-color: white;*/
       }
-      .progressBar {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: green;
-        z-index: -1;
+      .bottom-bar div {
+        display: inline-block;
+        width: 35vw;
+        height: 20vh;
+        margin-right: 5vw;
+        vertical-align: bottom;
+        margin-bottom: 2vh;
       }
       .c3-gauge-value {
         /*font-size: 16px !important;*/
-
+        background-color: rgba(255,255,255,0.5);
       }
     </style>
   </head>
@@ -89,8 +96,8 @@
       <button class='goToMe'>To Me!</button>
       <button class='goToPitch'>To Pitch!</button>
     </div>
-    <div class="beerProgress" id="beerProgress">
-      <div></div>
+    <div class="bottom-bar">
+      <div class='beer-bar'></div>
       <!-- <div class="progressBar" style='top: 50%'></div>
       <i class="fa fa-beer"></i> -->
     </div>

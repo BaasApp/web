@@ -3,15 +3,15 @@ Gauge._beer = 0;
 Gauge._cardio = 0;
 setTimeout(function () {
   var chart = c3.generate({
-    bindto: '.beerProgress div',
+    bindto: '.bottom-bar div',
     data: {
         columns: [
             ['data', 91.4]
         ],
         type: 'gauge',
-        onclick: function (d, i) { console.log("onclick", d, i); },
-        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        // onclick: function (d, i) { console.log("onclick", d, i); },
+        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        // onmouseout: function (d, i) { console.log("onmouseout", d, i); }
     },
     gauge: {
          label: {
