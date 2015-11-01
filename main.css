@@ -65,6 +65,7 @@ body {
   background-image: url(gauge-placeholder.png);
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: right bottom;
 }
 .c3-gauge-value {
   /*font-size: 16px !important;*/
