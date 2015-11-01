@@ -2,6 +2,12 @@ $(function() {
   var $healthLoginForm = $('#health-login form');
   var $loader = $('#health-login .loader');
 
+  $('#health-login .close').on('click', function(e) {
+    e.preventDefault();
+
+    $('#health-login').removeClass('show');
+  });
+
   $('.healthLogin').on('click', function() {
     $('#health-login').addClass('show');
   });
