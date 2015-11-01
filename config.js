@@ -1,1 +1,1 @@
-var server = "https://5c6d485d.ngrok.com/"
+var server = "http://localhost:3000/"

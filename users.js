@@ -85,6 +85,10 @@ var Users;
     }, 10000);
   };
 
+  Users.postHealth = function(email, password, callback) {
+    $.post(server + "users/" + me.id + "/health", {email: email, password: password}, callback);
+  };
+
 })();
 
 Users.intervalGetMe();

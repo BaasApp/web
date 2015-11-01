@@ -2,6 +2,11 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+body {
+  overflow: hidden;
+}
+
 .branding {
   position: fixed;
   top: 0;
@@ -59,4 +64,123 @@ html, body {
 .c3-gauge-value {
   /*font-size: 16px !important;*/
   background-color: rgba(255,255,255,0.5);
+}
+
+.login-form {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.login-form .form-container {
+  position: relative;
+  width: 400px;
+  max-width: 80%;
+  margin: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.login-form .loader {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  width: 100%;
+  transition: opacity 0.5s 0.2s;
+  opacity: 0.8;
+  display: none;
+  margin-top: 20px;
+}
+
+.login-form .loader.hide {
+  opacity: 0;
+  display: block;
+  visibility: hidden;
+}
+
+.login-form .loader.show {
+  opacity: 0.8;
+  display: block;
+  visibility: visible;
+}
+
+.login-form .loader .fa {
+  font-size: 160px;
+  color: #999;
+  margin-left: -10px;
+}
+
+.login-form form {
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+
+.login-form form.hide {
+  opacity: 0;
+}
+
+label.input {
+  display: block;
+  text-align: left;
+  font-family: sans-serif;
+  margin: 20px 0;
+  font-size: 28px;
+  color: #777;
+}
+
+label.input input {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  font-size: 20px;
+  padding: 12px;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.info {
+  font-family: sans-serif;
+  line-height: 1.4;
+  font-size: 90%;
+  color: #777;
+}
+
+.buttons {
+  text-align: center;
+  margin: 25px 0 0 0;
+}
+
+.buttons button {
+  box-sizing: border-box;
+  font-size: 42px;
+  background: none;
+  border: 0;
+  border-radius: 100px;
+  color: #fff;
+  font-family: sans-serif;
+  padding: 11px 16px 7px 22px;
+  background: rgb(65, 153, 35);
+}
+
+#health-login {
+  display: none;
+}
+
+#health-login.show {
+  display: block;
+}
+
+#health-login .logo {
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+#health-login .logo img {
+  width: 100%;
 }
