@@ -1,3 +1,6 @@
+var Gauge = function(){};
+Gauge._beer = 0;
+Gauge._cardio = 0;
 setTimeout(function () {
   var chart = c3.generate({
     bindto: '.beerProgress div',
@@ -14,11 +17,11 @@ setTimeout(function () {
          label: {
              format: function(value, ratio) {
                if (value < 30) {
-                 return 'too much fun!';
+                 return '200% fun!';
                } else if (value < 80) {
                  return 'perfect!';
                } else {
-                 return 'too healthy!';
+                 return 'beer time!';
                }
              },
              show: false // to turn off the min/max labels.
@@ -36,37 +39,61 @@ setTimeout(function () {
             values: [30, 80, 100]
         }
     },
-    size: {
-        height: 180
+    tooltip: {
+      show: false
     }
+
+    // size: {
+    //     height: 180
+    // }
   });
 
-  chart.load({
-      columns: [['data', 10]]
-  });
-
-  setTimeout(function () {
   chart.load({
       columns: [['data', 50]]
   });
-  }, 2000);
 
-  setTimeout(function () {
-  chart.load({
-      columns: [['data', 70]]
-  });
-  }, 3000);
+  // setTimeout(function () {
+  // chart.load({
+  //     columns: [['data', 50]]
+  // });
+  // }, 2000);
+  //
+  // setTimeout(function () {
+  // chart.load({
+  //     columns: [['data', 70]]
+  // });
+  // }, 3000);
+  //
+  // setTimeout(function () {
+  // chart.load({
+  //     columns: [['data', 0]]
+  // });
+  // }, 4000);
+  //
+  // setTimeout(function () {
+  // chart.load({
+  //     columns: [['data', 100]]
+  // });
+  // }, 5000);
 
-  setTimeout(function () {
-  chart.load({
-      columns: [['data', 0]]
-  });
-  }, 4000);
+  var caloriesPerBeer = 150;
+  Gauge.addBeer = function () {
+    Gauge._beer++;
+    Gauge.update();
+  };
 
-  setTimeout(function () {
-  chart.load({
-      columns: [['data', 100]]
-  });
-  }, 5000);
+  Gauge.updateCardio = function (number) {
+    Gauge._cardio = number;
+    Gauge.update();
+  };
+
+  Gauge.update = function () {
+    var cardios = (this._cardio + caloriesPerBeer) / caloriesPerBeer;
+    var ratio = (cardios || 0.0001) / (this._beer + 1 || 0.0001);
+
+    chart.load({
+        columns: [['data', ratio * 50]]
+    });
+  }
 
 }, 1500);

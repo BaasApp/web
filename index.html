@@ -56,12 +56,13 @@
       .beerProgress {
         /*display: none;*/
         position: fixed;
-        bottom: 0;
+        bottom: 5vh;
         left: 60vw;
         right: 0;
         text-align: right;
         font-size: 20vh;
         color: gray;
+        /*background-color: white;*/
       }
       .progressBar {
         position: absolute;
@@ -70,6 +71,10 @@
         left: 0;
         background-color: green;
         z-index: -1;
+      }
+      .c3-gauge-value {
+        /*font-size: 16px !important;*/
+
       }
     </style>
   </head>
@@ -92,7 +97,7 @@
 
     <script>
       L.mapbox.accessToken = 'pk.eyJ1IjoianVpY2UxMCIsImEiOiJjaWdlNXFtb28zdzFldmJtOGRkNnFlMnY5In0.72hyCbe4AfMONitVc23VSg';
-      var map = L.mapbox.map('map', 'juice10.o1h6ah72', {zoomControl: false}).setView([52.386818, 4.871052], 30);
+      var map = L.mapbox.map('map', 'juice10.o1h6ah72', {zoomControl: false, infoControl: false}).setView([52.386818, 4.871052], 30);
       var beerHeat = L.heatLayer([]).addTo(map);
       var customerHeat = L.heatLayer([], {gradient: {0: 'purple', 0.5: 'lightpink', 1: 'white'}}).addTo(map);
       // map.on('move', function () { console.log('hi', arguments, this); });
