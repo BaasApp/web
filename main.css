@@ -53,13 +53,40 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
   /*background-color: white;*/
 }
-.bottom-bar div {
+.bottom-bar .right, .bottom-bar .left {
   display: inline-block;
   width: 35vw;
   height: 20vh;
   margin-right: 5vw;
   vertical-align: bottom;
   margin-bottom: 2vh;
+}
+
+.bottom-bar .left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: 5vw;
+  margin-right: 0;
+}
+.bottom-bar .left.tokens {
+  background-image: url(tokens.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position:  bottom left;
+  margin: 0;
+  text-align: center;
+}
+.tokens strong {
+  font-size: 28px;
+  /*transform: rotate(16deg);*/
+  display: inline-block;
+  padding-left: 3vw;
+  padding-bottom: 2vh;
+  color: white;
+  position: absolute;
+  bottom: 2vw;
+  left: 5vh;
 }
 .gauge-placeholder {
   background-image: url(gauge-placeholder.png);

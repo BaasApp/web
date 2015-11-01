@@ -3,7 +3,7 @@ Gauge._beer = 0;
 Gauge._calories = 0;
 setTimeout(function () {
   var chart = c3.generate({
-    bindto: '.bottom-bar div',
+    bindto: '.bottom-bar .gauge',
     data: {
         columns: [
             ['data', 91.4]
