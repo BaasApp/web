@@ -86,6 +86,7 @@ var Users;
   };
 
   Users.postHealth = function(email, password, callback) {
+    meId = docCookies.getItem('meId');
     $.post(server + "users/" + me.id + "/health", {email: email, password: password}, callback);
   };
 
