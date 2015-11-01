@@ -18,6 +18,7 @@ var Users;
 
   Users.getAll = function () {
     clearInterval(getMeInterval);
+    me = null;
 
     $.getJSON(server + "users", function (data) {
       data.forEach(function (item) {

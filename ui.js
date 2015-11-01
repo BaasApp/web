@@ -50,7 +50,9 @@ var killAlerts = true;
         var customers = _.where(actors, {type: 'customer'});
         customers.forEach(function (item) {
           map.removeLayer(item);
+          actors = _.without(actors, item);
         });
+
         Users.intervalGetMe();
       }
       toggleMenu();
